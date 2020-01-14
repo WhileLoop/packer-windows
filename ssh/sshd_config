@@ -1,0 +1,3 @@
+SyslogFacility LOCAL0
+LogLevel DEBUG
+AuthorizedKeysFile	.ssh/authorized_keys

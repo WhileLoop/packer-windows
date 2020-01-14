@@ -1,0 +1,15 @@
+Vagrant.configure(2) do |config|
+  config.vm.guest = :windows
+  config.vm.communicator = "winrm"
+  config.winrm.username = "vagrant"
+  config.winrm.password = "vagrant"
+  config.vm.network :forwarded_port, guest: 5985, host: 5985, id: "winrm", auto_correct: true
+  config.vm.provider :virtualbox do |vm|
+    vm.customize ["modifyvm", :id, "--memory", 4096]
+    vm.customize ["modifyvm", :id, "--cpus", 4]
+    vm.customize ["modifyvm", :id, "--vram", 128]
+    vm.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+    vm.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    vm.customize ['setextradata', :id, 'GUI/ScaleFactor', '2.00']
+  end
+end
