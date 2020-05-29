@@ -49,12 +49,35 @@
       "script": "scripts/install-guest-additions.ps1",
       "elevated_user": "vagrant",
       "elevated_password": "vagrant"
+    },
+    {
+      "type": "powershell",
+      "script": "scripts/install-apps.ps1",
+      "elevated_user": "vagrant",
+      "elevated_password": "vagrant"
+    },
+    {
+      "type": "file",
+      "source": "ssh/sshd_config",
+      "destination": "C:\\ProgramData\\ssh\\sshd_config"
+    },
+    {
+      "type": "file",
+      "source": "ssh/authorized_keys",
+      "destination": "C:\\Users\\vagrant\\.ssh\\authorized_keys"
+    },
+    {
+      "type": "powershell",
+      "script": "scripts/start-sshd.ps1",
+      "elevated_user": "vagrant",
+      "elevated_password": "vagrant"
     }
   ],
   "post-processors": [
     {
       "type": "vagrant",
       "keep_input_artifact": true,
+      "vagrantfile_template": "Vagrantfile.template",
       "compression_level": 0,
       "output": "artifacts/vagrant/windows-2016-vbox.box"
     }

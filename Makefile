@@ -20,3 +20,18 @@ clean-all: clean-cache clean-vagrant clean-virtualbox
 
 clean-vagrant-boxes:
 	rm -rf ~/.vagrant.d/boxes/*
+
+clean-vagrant-dir:
+	rm -rf .vagrant
+
+get-pub-key:
+	ssh-keygen -y -f ~/.vagrant.d/insecure_private_key > ssh/authorized_keys
+
+up:
+	vagrant up
+
+down:
+	vagrant halt
+
+destroy:
+	vagrant destroy -f
